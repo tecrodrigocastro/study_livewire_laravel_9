@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class StudentShow extends Component
 {
-    public $name, $email, $course;
+    public $name, $email, $course, $student_id;
     // public $students;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -35,6 +35,39 @@ class StudentShow extends Component
         session()->flash('message', 'Student Added Successfully');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function updateStudent()
+    {
+        $validated = $this->validate();
+
+        Student::where('id', $this->student_id)->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'course' => $validated['course']
+        ]);
+        session()->flash('message', 'Student Updated Successfully');
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function editStudent(int $student_id)
+    {
+
+        $student = Student::find($student_id);
+        if ($student) {
+            $this->student_id = $student->id;
+            $this->name = $student->name;
+            $this->email = $student->email;
+            $this->course = $student->course;
+        } else {
+            return redirect()->to('/students');
+        }
+    }
+
+    public function closeModal()
+    {
+        $this->resetInput();
     }
 
     public function resetInput()

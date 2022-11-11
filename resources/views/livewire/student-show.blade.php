@@ -34,7 +34,9 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->course }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary">Edit</a>
+                                            <a href="" class="btn btn-primary"
+                                                wire:click="editStudent({{ $student->id }})" data-bs-toggle="modal"
+                                                data-bs-target="#updateStudentModal">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

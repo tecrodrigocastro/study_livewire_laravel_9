@@ -10,6 +10,7 @@
     <script>
         window.addEventListener('close-modal', event => {
             $('#studentModal').modal('hide');
+            $('#updateStudentModal').modal('hide');
         })
     </script>
 @endsection
