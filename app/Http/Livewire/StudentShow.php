@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Student;
 use Livewire\Component;
 
-class Student extends Component
+class StudentShow extends Component
 {
     public $name, $email, $course;
 
@@ -24,10 +25,23 @@ class Student extends Component
 
     public function saveStudent()
     {
+        $validated = $this->validate();
+
+        Student::create($validated);
+        session()->flash('message', 'Student Added Successfully');
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function resetInput()
+    {
+        $this->name = '';
+        $this->email = '';
+        $this->course = '';
     }
 
     public function render()
     {
-        return view('livewire.student');
+        return view('livewire.student-show');
     }
 }
