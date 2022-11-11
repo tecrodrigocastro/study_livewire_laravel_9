@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Student CRUD with Bootstrap Modal
+                            <input type="search" wire:model="search" placeholder="Search..." class="form-control float-end mx-2" style="width: 230px">
                             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
                                 data-bs-target="#studentModal">
                                 Add New Student

@@ -9,7 +9,7 @@ use Livewire\Component;
 class StudentShow extends Component
 {
     public $name, $email, $course, $student_id;
-    // public $students;
+    public $search = '';
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -91,7 +91,7 @@ class StudentShow extends Component
 
     public function render()
     {
-        $students = Student::orderBy('id', 'DESC')->paginate(5);
+        $students = Student::where('name','like','%'.$this->search.'%')->orderBy('id', 'DESC')->paginate(3);
         return view('livewire.student-show', ['students' => $students]);
     }
 }
