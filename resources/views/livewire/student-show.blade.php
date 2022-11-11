@@ -16,8 +16,38 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        table data
+                        <table class="table table-borderd table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Course</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($students as $student)
+                                    <tr>
+                                        <td>{{ $student->id }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->email }}</td>
+                                        <td>{{ $student->course }}</td>
+                                        <td>
+                                            <a href="" class="btn btn-primary">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5"> No Record Found</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        {{ $students->links() }}
                     </div>
+
                 </div>
             </div>
         </div>

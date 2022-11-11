@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\Student;
 use Livewire\Component;
 
 class StudentShow extends Component
 {
     public $name, $email, $course;
+    // public $students;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     protected function rules()
     {
@@ -42,6 +46,7 @@ class StudentShow extends Component
 
     public function render()
     {
-        return view('livewire.student-show');
+        $students = Student::orderBy('id', 'DESC')->paginate(2);
+        return view('livewire.student-show', ['students' => $students]);
     }
 }
