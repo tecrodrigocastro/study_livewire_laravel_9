@@ -37,7 +37,9 @@
                                             <a href="" class="btn btn-primary"
                                                 wire:click="editStudent({{ $student->id }})" data-bs-toggle="modal"
                                                 data-bs-target="#updateStudentModal">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="" wire:click="deleteStudent({{ $student->id }})"
+                                                class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteStudentModal">Delete</a>
                                         </td>
                                     </tr>
                                 @empty

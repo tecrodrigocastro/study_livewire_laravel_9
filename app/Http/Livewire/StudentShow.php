@@ -65,6 +65,18 @@ class StudentShow extends Component
         }
     }
 
+    public function deleteStudent(int $student_id)
+    {
+        $this->student_id = $student_id;
+    }
+    public function destroyStudent()
+    {
+        Student::find($this->student_id)->delete();
+        session()->flash('message', 'Student Deleted Successfully');
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
     public function closeModal()
     {
         $this->resetInput();
@@ -79,7 +91,7 @@ class StudentShow extends Component
 
     public function render()
     {
-        $students = Student::orderBy('id', 'DESC')->paginate(2);
+        $students = Student::orderBy('id', 'DESC')->paginate(5);
         return view('livewire.student-show', ['students' => $students]);
     }
 }
